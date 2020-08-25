@@ -4,6 +4,7 @@ const http = require('http');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const cors = require('cors');
 
 // DB Setup
 mongoose.connect('mongodb://localhost:27017/auth', {
@@ -20,6 +21,7 @@ connection.on('connected', function () {
 const app = express();
 const router = require('./router');
 app.use(morgan('combined'));
+app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
 
